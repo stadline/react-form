@@ -5,7 +5,10 @@
   "main": "lib/index.js",
   "scripts": {
     "test": "jest src",
-    "build": "babel src --ignore spec.js,test.js --out-dir lib"
+    "clean": "rimraf lib",
+    "build": "babel src --ignore spec.js,test.js --out-dir lib",
+    "build:watch": "npm run build -- --watch",
+    "prepublish": "npm run clean && npm run build"
   },
   "keywords": [
     "react",
@@ -23,6 +26,7 @@
     "babel-preset-react": "^6.23.0",
     "babel-preset-stage-2": "^6.22.0",
     "jest": "^19.0.2",
-    "react": "^15.4.2"
+    "react": "^15.4.2",
+    "rimraf": "^2.6.1"
   }
 }
