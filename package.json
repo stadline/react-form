@@ -2,9 +2,10 @@
   "name": "react-form",
   "version": "1.0.0",
   "description": "A React HOC to build nested form fieldsets.",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest src",
+    "build": "babel src --ignore spec.js,test.js --out-dir lib"
   },
   "keywords": [
     "react",
@@ -16,6 +17,7 @@
   "author": "alex-pex",
   "license": "ISC",
   "devDependencies": {
+    "babel-cli": "^6.24.0",
     "babel-jest": "^19.0.0",
     "babel-preset-es2015": "^6.24.0",
     "babel-preset-react": "^6.23.0",
