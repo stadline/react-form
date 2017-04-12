@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 const identity = value => value;
 
 const reactForm = (transform = identity, reverseTransform = identity) => {
-  return (ChildComponent) => class FormComponent extends React.Component {
+  return (ChildComponent) => class FormComponent extends Component {
     static propTypes = {
-      value: React.PropTypes.any.isRequired,
-      onChange: React.PropTypes.func.isRequired
+      value: PropTypes.any.isRequired,
+      onChange: PropTypes.func.isRequired
     }
 
     state = {
@@ -19,8 +20,9 @@ const reactForm = (transform = identity, reverseTransform = identity) => {
       return <ChildComponent
         value={this.getTransformValue(value)}
         formValue={this.getTransformValue(value)}
-        onChange={this.handleChange}
-        onFormChange={this.handleChange}
+        onChange={this.handleFormChange}
+        onFormChange={this.handleFormChange}
+        onFieldChange={this.handleFieldChange}
         modelValue={value}
         onModelChange={onChange}
         {...rest} />;
@@ -36,7 +38,7 @@ const reactForm = (transform = identity, reverseTransform = identity) => {
       return transform(modelValue, this.state.reverseTransform.source);
     }
 
-    handleChange = (formValue) => {
+    handleFormChange = (formValue) => {
       const { value, onChange } = this.props;
       const modelValue = reverseTransform(formValue, value);
 
@@ -48,6 +50,16 @@ const reactForm = (transform = identity, reverseTransform = identity) => {
 
       // send value
       onChange(modelValue);
+    }
+
+    handleFieldChange = (fieldName) => (fieldValue) => {
+      const { value } = this.props;
+      const formValue = this.getTransformValue(value);
+
+      this.handleFormChange({
+        ...formValue,
+        [fieldName]: fieldValue
+      });
     }
   };
 };
