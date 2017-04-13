@@ -35,12 +35,12 @@ const reactForm = (transform = identity, reverseTransform = identity) => {
      * Return transformed value otherwise
      */
     getTransformValue (modelValue) {
-      return transform(modelValue, this.state.reverseTransform.source);
+      return transform(modelValue, this.state.reverseTransform.source, this.props);
     }
 
     handleFormChange = (formValue) => {
       const { value, onChange } = this.props;
-      const modelValue = reverseTransform(formValue, value);
+      const modelValue = reverseTransform(formValue, value, this.props);
 
       // save reverse transform value
       // it will be used to keep user value on transform
