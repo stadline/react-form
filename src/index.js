@@ -1,5 +1,8 @@
 export { default } from 'react-form/lib/reactForm';
 
+// utils
+export { default as logFunction } from 'react-form/lib/logFunction';
+
 // components
 export { default as Checkbox } from 'react-form/lib/components/Checkbox';
 export { default as Input } from 'react-form/lib/components/Input';
