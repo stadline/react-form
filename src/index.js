@@ -1,15 +1,15 @@
-export { default } from 'react-form/lib/reactForm';
+export { default } from './reactForm';
 
 // utils
-export { default as logFunction } from 'react-form/lib/logFunction';
+export { default as logFunction } from './logFunction';
 
 // components
-export { default as Checkbox } from 'react-form/lib/components/Checkbox';
-export { default as Input } from 'react-form/lib/components/Input';
-export { default as Select } from 'react-form/lib/components/Select';
+export { default as Checkbox } from './components/Checkbox';
+export { default as Input } from './components/Input';
+export { default as Select } from './components/Select';
 
 // transformers
 export {
   transform as transformAmount,
   reverseTransform as reverseTransformAmount
-} from 'react-form/lib/transformers/amount';
+} from './transformers/amount';
