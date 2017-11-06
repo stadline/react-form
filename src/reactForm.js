@@ -52,13 +52,13 @@ const reactForm = (transform = identity, reverseTransform = identity) => {
       onChange(modelValue);
     }
 
-    handleFieldChange = (fieldName) => (fieldValue) => {
+    handleFieldChange = (fieldName, valueSelector = identity) => (fieldValue) => {
       const { value } = this.props;
       const formValue = this.getTransformValue(value);
 
       this.handleFormChange({
         ...formValue,
-        [fieldName]: fieldValue
+        [fieldName]: valueSelector(fieldValue)
       });
     }
   };
